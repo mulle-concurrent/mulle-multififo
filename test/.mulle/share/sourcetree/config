@@ -1,2 +1,2 @@
-mulle-testallocator;${MULLE_TESTALLOCATOR_NODETYPE:-tar};no-import,no-singlephase;6A03F29B-046C-48F9-9366-EABE5CEDAFA7;${MULLE_TESTALLOCATOR_URL:-https://github.com/mulle-core/mulle-testallocator/archive/${MULLE_TAG}.tar.gz};;${MULLE_TESTALLOCATOR_TAG:-latest};;
-mulle-fifo;${MULLE_FIFO_NODETYPE:-tar};;A7417FD6-A299-4471-BE70-94FED23CC7A7;${MULLE_FIFO_URL:-https://github.com/nat/mulle-fifo/archive/${MULLE_TAG}.tar.gz};;${MULLE_FIFO_TAG:-latest};;
+mulle-testallocator;${MULLE_TESTALLOCATOR_NODETYPE:-tar};no-import,no-singlephase;6F178BE2-3084-4A4F-B618-9132AA035461;${MULLE_TESTALLOCATOR_URL:-https://github.com/mulle-core/mulle-testallocator/archive/${MULLE_TAG}.tar.gz};;${MULLE_TESTALLOCATOR_TAG:-latest};;
+mulle-multififo;${MULLE_MULTIFIFO_NODETYPE:-tar};;796980C3-73B9-4263-9DF5-A45F834A0979;${MULLE_MULTIFIFO_URL:-https://github.com/nat/mulle-multififo/archive/${MULLE_TAG}.tar.gz};;${MULLE_MULTIFIFO_TAG:-latest};;
