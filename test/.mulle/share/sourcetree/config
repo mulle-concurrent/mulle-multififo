@@ -1,0 +1,2 @@
+mulle-testallocator;${MULLE_TESTALLOCATOR_NODETYPE:-tar};no-import,no-singlephase;6A03F29B-046C-48F9-9366-EABE5CEDAFA7;${MULLE_TESTALLOCATOR_URL:-https://github.com/mulle-core/mulle-testallocator/archive/${MULLE_TAG}.tar.gz};;${MULLE_TESTALLOCATOR_TAG:-latest};;
+mulle-fifo;${MULLE_FIFO_NODETYPE:-tar};;A7417FD6-A299-4471-BE70-94FED23CC7A7;${MULLE_FIFO_URL:-https://github.com/nat/mulle-fifo/archive/${MULLE_TAG}.tar.gz};;${MULLE_FIFO_TAG:-latest};;
