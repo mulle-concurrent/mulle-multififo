@@ -107,6 +107,24 @@ export MULLE_DLFCN_BRANCH="prerelease"
 
 
 #
+# dlfcn-win32 nodetype: ${DLFCN_WIN32_NODETYPE:-tar}
+#
+export DLFCN_WIN32_NODETYPE="git"
+
+
+#
+# dlfcn-win32 url: ${DLFCN_WIN32_URL:-https://github.com/mulle-core/dlfcn-win32/archive/refs/tags/${MULLE_TAG}.tar.gz}
+#
+export DLFCN_WIN32_URL="https://github.com/mulle-core/dlfcn-win32.git"
+
+
+#
+# dlfcn-win32 branch: ${DLFCN_WIN32_BRANCH}
+#
+export DLFCN_WIN32_BRANCH="prerelease"
+
+
+#
 # mulle-atinit nodetype: ${MULLE_ATINIT_NODETYPE:-tar}
 #
 export MULLE_ATINIT_NODETYPE="git"
@@ -143,20 +161,20 @@ export MULLE_ATEXIT_BRANCH="prerelease"
 
 
 #
-# mulle-fifo nodetype: ${MULLE_FIFO_NODETYPE:-tar}
+# mulle-multififo nodetype: ${MULLE_MULTIFIFO_NODETYPE:-tar}
 #
-export MULLE_FIFO_NODETYPE="git"
+export MULLE_MULTIFIFO_NODETYPE="git"
 
 
 #
-# mulle-fifo url: ${MULLE_FIFO_URL:-https://github.com/mulle-concurrent/mulle-fifo/archive/${MULLE_TAG}.tar.gz}
+# mulle-multififo url: ${MULLE_MULTIFIFO_URL:-https://github.com/mulle-concurrent/mulle-multififo/archive/${MULLE_TAG}.tar.gz}
 #
-export MULLE_FIFO_URL="https://github.com/mulle-concurrent/mulle-fifo.git"
+export MULLE_MULTIFIFO_URL="https://github.com/mulle-concurrent/mulle-multififo.git"
 
 
 #
-# mulle-fifo branch: ${MULLE_FIFO_BRANCH}
+# mulle-multififo branch: ${MULLE_MULTIFIFO_BRANCH}
 #
-export MULLE_FIFO_BRANCH="prerelease"
+export MULLE_MULTIFIFO_BRANCH="prerelease"
 
 
