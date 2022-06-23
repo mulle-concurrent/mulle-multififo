@@ -14,7 +14,7 @@
  *
  *  version:  major, minor, patch
  */
-#define MULLE_MULTIFIFO_VERSION  ((0 << 20) | (0 << 8) | 1)
+#define MULLE_MULTIFIFO_VERSION  ((0 << 20) | (0 << 8) | 2)
 
 
 static inline unsigned int   mulle_multififo_get_version_major( void)
@@ -35,7 +35,7 @@ static inline unsigned int   mulle_multififo_get_version_patch( void)
 }
 
 
-MULLE_MULTIFIFO_EXTERN_GLOBAL
+MULLE_MULTIFIFO_GLOBAL
 uint32_t   mulle_multififo_get_version( void);
 
 
