@@ -1,8 +1,7 @@
-cmake_minimum_required( VERSION 3.1)
+cmake_minimum_required( VERSION 3.15)
 
 project( mulle-multififo C)
 
-add_definitions( -DMULLE_MULTIFIFO_EXTERN_GLOBAL=extern)
 
 #
 # Turn a "Library" into an "Executable"
@@ -45,9 +44,6 @@ elseif( "${MULLE_PROJECT_TYPE}" STREQUAL "Framework")
    endif()
 
    include( Framework)
-   set_target_properties( "${FRAMEWORK_NAME}" PROPERTIES
-     FRAMEWORK_VERSION A
-   )
    include( InstallFramework)
 
 elseif( "${MULLE_PROJECT_TYPE}" STREQUAL "Library")
