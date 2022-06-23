@@ -43,3 +43,5 @@ dependency/
 mintomic/
 .mulle-sourcetree-fix
 *.sublime-workspace
+.mulle-make-build-dir
+version.old
