@@ -70,7 +70,7 @@ and all its dependencies:
 
 ```
 mulle-sde install --prefix /usr/local \
-   https://github.com/mulle-concurrent/mulle-multififo/archive/latest.tar.gz
+   //github.com/mulle-concurrent/mulle-multififo/archive/latest.tar.gz
 ```
 
 ### Manual Installation
