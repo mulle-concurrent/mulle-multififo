@@ -16,26 +16,26 @@ pointer.
 
 ## Usage
 
-```
+``` c
 void   _mulle_pointermultififo_init( struct mulle_pointermultififo *p,
                                      unsigned int size,
                                      struct mulle_allocator *allocator)
 ```
 
-Call this to initalize the FIFO for use. Specify a size for the FIFO. A FIFO
-must be at least two entries sized. Tip: Make the FIFO _at_ _least_ as big as
-the expected number of threads competing for access.
+Call `..._init` to initalize the FIFO for use. Specify a size for the FIFO.
+A FIFO must be at least two entries sized. Tip: Make the FIFO _at_ _least_ as
+big as the expected number of threads competing for access.
 
 
-```
+``` c
 void   _mulle_pointermultififo_done( struct mulle_pointermultififo *p)
 ```
 
-Call this to free the FIFO when no other thread needs it. This is necessary
-to avoid leaks.
+Call `..._done` to free the FIFO when no other thread needs it. This is
+necessary to avoid leaks.
 
 
-```
+``` c
 void   *_mulle_pointermultififo_read_barrier( struct mulle_pointermultififo *p)
 ```
 
@@ -44,7 +44,7 @@ a memory barrier to ensure that the memory pointed to by the returned pointer
 is valid.
 
 
-```
+``` c
 int   _mulle_pointermultififo_write( struct mulle_pointermultififo *p,
                                      void *pointer)
 ```
@@ -68,9 +68,9 @@ mulle-sde dependency add --c --github mulle-concurrent mulle-multififo
 Use [mulle-sde](//github.com/mulle-sde) to build and install mulle-multififo
 and all its dependencies:
 
-```
+``` sh
 mulle-sde install --prefix /usr/local \
-   //github.com/mulle-concurrent/mulle-multififo/archive/latest.tar.gz
+   https://github.com/mulle-concurrent/mulle-multififo/archive/latest.tar.gz
 ```
 
 ### Manual Installation
@@ -85,15 +85,13 @@ Requirements                                               | Description
 
 Install into `/usr/local`:
 
-```
-mkdir build 2> /dev/null
-(
-   cd build ;
-   cmake -DCMAKE_INSTALL_PREFIX=/usr/local \
-         -DCMAKE_PREFIX_PATH=/usr/local \
-         -DCMAKE_BUILD_TYPE=Release .. ;
-   make install
-)
+``` sh
+cmake -B build \
+      -DCMAKE_INSTALL_PREFIX=/usr/local \
+      -DCMAKE_PREFIX_PATH=/usr/local \
+      -DCMAKE_BUILD_TYPE=Release &&
+cmake --build build --config Release &&
+cmake --install build --config Release
 ```
 
 ### Steal

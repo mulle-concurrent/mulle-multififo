@@ -38,10 +38,6 @@
 #include "include.h"
 
 
-/*
- * FIFO: single consumer thread / single producer thread only
- *       Non growing but size can be configured at init time.
- */
 struct mulle_pointermultififo
 {
    mulle_atomic_pointer_t   n;        
