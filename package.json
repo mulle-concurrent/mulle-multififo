@@ -1,0 +1,19 @@
+{
+   "name" : "mulle-multififo",
+   "version" : "0.0.3",
+   "description" : "🐛 mulle-multififo multi-producer/multi-consumer FIFO holding `void *`",
+   "homepage" : "https://github.com/mulle-concurrent/mulle-multififo",
+   "bugs" : "https://github.com/mulle-concurrent/mulle-multififo/issues",
+   "keywords" : [],
+   "license" : "UNLICENSED",
+   "repository" : {
+      "type" : "git",
+      "url" : "mulle-concurrent/mulle-multififo"
+   },
+   "dependencies" : {
+      "mulle-thread" : "git://github.com/mulle-concurrent/mulle-thread",
+      "mulle-c11" : "git://github.com/mulle-c/mulle-c11",
+      "mintomic" : "git://github.com/mulle-concurrent/mintomic",
+      "mulle-allocator" : "git://github.com/mulle-c/mulle-allocator"
+   }
+}
