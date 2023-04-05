@@ -1,0 +1,42 @@
+## API
+
+``` c
+void   _mulle_pointermultififo_init( struct mulle_pointermultififo *p,
+                                     unsigned int size,
+                                     struct mulle_allocator *allocator)
+```
+
+Call `..._init` to initalize the FIFO for use. Specify a size for the FIFO.
+A FIFO must be at least two entries sized. Tip: Make the FIFO _at_ _least_ as
+big as the expected number of threads competing for access.
+
+
+``` c
+void   _mulle_pointermultififo_done( struct mulle_pointermultififo *p)
+```
+
+Call `..._done` to free the FIFO when no other thread needs it. This is
+necessary to avoid leaks.
+
+
+``` c
+void   *_mulle_pointermultififo_read_barrier( struct mulle_pointermultififo *p)
+```
+
+Read from the FIFO. Will return NULL if empty. Will not block. Will put up
+a memory barrier to ensure that the memory pointed to by the returned pointer
+is valid.
+
+
+``` c
+int   _mulle_pointermultififo_write( struct mulle_pointermultififo *p,
+                                     void *pointer)
+```
+
+Write to the FIFO. Will return -1 if full, 0 on success. Will not block.
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+Written for multi-thread configurations. You can have multiple producers and
+consumers operating on the FIFO. The size of the FIFO is set at runtime.
+Use [mulle-fifo](//github.com/mulle-concurrent/mulle-fifo) if your require only
+a dual-thread solution.
+
