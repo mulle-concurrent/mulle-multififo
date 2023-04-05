@@ -1,0 +1,24 @@
+{
+   "name" : "mulle-multififo",
+   "version" : "0.0.3",
+   "description" : "mulle-multififo multi-producer/multi-consumer FIFO holding `void *`",
+   "keywords" : [],
+   "license" : "BSD-3-Clause",
+   "repo" : "mulle-concurrent/mulle-multififo",
+   "src" : [
+      "src/generic/include-private.h",
+      "src/generic/include.h",
+      "src/mulle-multififo.h",
+      "src/mulle-pointermultififo.c",
+      "src/mulle-pointermultififo.h",
+      "src/reflect/_mulle-multififo-include-private.h",
+      "src/reflect/_mulle-multififo-include-public.h",
+      "src/reflect/_mulle-multififo-include.h",
+      "src/reflect/_mulle-multififo-provide.h",
+      "src/reflect/_mulle-multififo-versioncheck.h"
+   ],
+   "dependencies" : {
+      "mulle-concurrent/mulle-thread": "*",
+      "mulle-c/mulle-allocator": "*"
+   }
+}
