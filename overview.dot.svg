@@ -16,10 +16,13 @@
 <text text-anchor="middle" x="128.5" y="-158.3" font-family="Times,serif" font-size="14.00">mulle&#45;multififo</text>
 </g>
 <!-- mulle&#45;allocator -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>mulle&#45;allocator</title>
+<g id="a_node3"><a xlink:href="https://github.com/mulle-c/mulle-allocator" xlink:title="mulle&#45;allocator">
 <polygon fill="lightgrey" stroke="black" points="123,-108 0,-108 0,-72 123,-72 123,-108"/>
 <text text-anchor="middle" x="61.5" y="-86.3" font-family="Times,serif" font-size="14.00">mulle&#45;allocator</text>
+</a>
+</g>
 </g>
 <!-- mulle&#45;multififo&#45;&gt;mulle&#45;allocator -->
 <g id="edge1" class="edge">
@@ -28,10 +31,13 @@
 <polygon fill="black" stroke="black" points="87.31,-112.91 77.87,-108.1 82.26,-117.75 87.31,-112.91"/>
 </g>
 <!-- mulle&#45;thread -->
-<g id="node3" class="node">
+<g id="node5" class="node">
 <title>mulle&#45;thread</title>
+<g id="a_node5"><a xlink:href="https://github.com/mulle-concurrent/mulle-thread" xlink:title="mulle&#45;thread">
 <polygon fill="lightgrey" stroke="black" points="249.5,-108 141.5,-108 141.5,-72 249.5,-72 249.5,-108"/>
 <text text-anchor="middle" x="195.5" y="-86.3" font-family="Times,serif" font-size="14.00">mulle&#45;thread</text>
+</a>
+</g>
 </g>
 <!-- mulle&#45;multififo&#45;&gt;mulle&#45;thread -->
 <g id="edge2" class="edge">
@@ -40,22 +46,28 @@
 <polygon fill="black" stroke="black" points="174.74,-117.75 179.13,-108.1 169.69,-112.91 174.74,-117.75"/>
 </g>
 <!-- mintomic -->
-<g id="node4" class="node">
+<g id="node2" class="node">
 <title>mintomic</title>
+<g id="a_node2"><a xlink:href="https://github.com/mulle-concurrent/mintomic" xlink:title="mintomic">
 <polygon fill="lightgrey" stroke="black" points="185,-36 102,-36 102,0 185,0 185,-36"/>
 <text text-anchor="middle" x="143.5" y="-14.3" font-family="Times,serif" font-size="14.00">mintomic</text>
+</a>
+</g>
+</g>
+<!-- mulle&#45;c11 -->
+<g id="node4" class="node">
+<title>mulle&#45;c11</title>
+<g id="a_node4"><a xlink:href="https://github.com/mulle-c/mulle-c11" xlink:title="mulle&#45;c11">
+<polygon fill="lightgrey" stroke="black" points="289.5,-36 203.5,-36 203.5,0 289.5,0 289.5,-36"/>
+<text text-anchor="middle" x="246.5" y="-14.3" font-family="Times,serif" font-size="14.00">mulle&#45;c11</text>
+</a>
+</g>
 </g>
 <!-- mulle&#45;thread&#45;&gt;mintomic -->
 <g id="edge3" class="edge">
 <title>mulle&#45;thread&#45;&gt;mintomic</title>
 <path fill="none" stroke="black" d="M182.65,-71.7C176.47,-63.39 168.96,-53.28 162.18,-44.14"/>
 <polygon fill="black" stroke="black" points="164.98,-42.04 156.21,-36.1 159.36,-46.22 164.98,-42.04"/>
-</g>
-<!-- mulle&#45;c11 -->
-<g id="node5" class="node">
-<title>mulle&#45;c11</title>
-<polygon fill="lightgrey" stroke="black" points="289.5,-36 203.5,-36 203.5,0 289.5,0 289.5,-36"/>
-<text text-anchor="middle" x="246.5" y="-14.3" font-family="Times,serif" font-size="14.00">mulle&#45;c11</text>
 </g>
 <!-- mulle&#45;thread&#45;&gt;mulle&#45;c11 -->
 <g id="edge4" class="edge">
