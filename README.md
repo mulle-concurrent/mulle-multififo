@@ -70,10 +70,17 @@ pointer.
 
 ## Add
 
+**This project is a component of the [mulle-core](//github.com/mulle-core/mulle-core) library. As such you usually will *not* add or install it
+individually, unless you specifically do not want to link against
+`mulle-core`.**
+
+
+### Add as an individual component
+
 Use [mulle-sde](//github.com/mulle-sde) to add mulle-multififo to your project:
 
 ``` sh
-mulle-sde add github:/
+mulle-sde add github:mulle-concurrent/mulle-multififo
 ```
 
 To only add the sources of mulle-multififo with dependency
@@ -81,10 +88,10 @@ sources use [clib](https://github.com/clibs/clib):
 
 
 ``` sh
-clib install --out src/ /
+clib install --out src/mulle-concurrent mulle-concurrent/mulle-multififo
 ```
 
-Add `-isystem src/` to your `CFLAGS` and compile all the sources that were downloaded with your project.
+Add `-isystem src/mulle-concurrent` to your `CFLAGS` and compile all the sources that were downloaded with your project.
 
 
 ## Install
