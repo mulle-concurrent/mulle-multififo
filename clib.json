@@ -1,7 +1,7 @@
 {
    "name" : "mulle-multififo",
-   "version" : "0.0.4",
-   "description" : "mulle-multififo multi-producer/multi-consumer FIFO holding `void *`",
+   "version" : "0.0.5",
+   "description" : "🐛 mulle-multififo multi-producer/multi-consumer FIFO holding `void *`",
    "keywords" : [],
    "license" : "BSD-3-Clause",
    "repo" : "mulle-concurrent/mulle-multififo",
