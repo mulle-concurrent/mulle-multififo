@@ -10,7 +10,7 @@ a dual-thread solution.
 
 | Release Version                                       | Release Notes
 |-------------------------------------------------------|--------------
-| ![Mulle kybernetiK tag](https://img.shields.io/github/tag//mulle-multififo.svg?branch=release) [![Build Status](https://github.com//mulle-multififo/workflows/CI/badge.svg?branch=release)](//github.com//mulle-multififo/actions)| [RELEASENOTES](RELEASENOTES.md) |
+| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-concurrent/mulle-multififo.svg?branch=release) [![Build Status](https://github.com/mulle-concurrent/mulle-multififo/workflows/CI/badge.svg?branch=release)](//github.com/mulle-concurrent/mulle-multififo/actions)| [RELEASENOTES](RELEASENOTES.md) |
 
 
 ## API
@@ -102,7 +102,7 @@ Use [mulle-sde](//github.com/mulle-sde) to build and install mulle-multififo and
 
 ``` sh
 mulle-sde install --prefix /usr/local \
-   https://github.com///archive/latest.tar.gz
+   https://github.com/mulle-concurrent/mulle-multififo/archive/latest.tar.gz
 ```
 
 ### Manual Installation
@@ -113,6 +113,8 @@ Install the requirements:
 |----------------------------------------------|-----------------------
 | [mulle-thread](https://github.com/mulle-concurrent/mulle-thread)             | 🔠 Cross-platform thread/mutex/tss/atomic operations in C
 | [mulle-allocator](https://github.com/mulle-c/mulle-allocator)             | 🔄 Flexible C memory allocation scheme
+
+Download the latest [tar](https://github.com/mulle-concurrent/mulle-multififo/archive/refs/tags/latest.tar.gz) or [zip](https://github.com/mulle-concurrent/mulle-multififo/archive/refs/tags/latest.zip) archive and unpack it.
 
 Install **mulle-multififo** into `/usr/local` with [cmake](https://cmake.org):
 
