@@ -45,6 +45,7 @@ static mulle_thread_rval_t   producer( void *arg)
 
 done:
    fprintf( stderr, "producer quits\n");
+   mulle_thread_return();
 }
 
 
