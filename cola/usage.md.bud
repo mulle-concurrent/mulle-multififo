@@ -1,8 +1,7 @@
 ## Usage
 
-You can not store 0 pointers or `~0` pointers into the FIFO.
+You can not store NULL pointers or `~0` pointers into the FIFO.
 
-The operations are non-blocking and lock-free. If the FIFO is full your write
-will return with an error. If the FIFO is empty on ready you will get a NULL
-pointer.
+If the FIFO is full your write will return with an error. If the FIFO is empty
+on read you will get a NULL pointer.
 

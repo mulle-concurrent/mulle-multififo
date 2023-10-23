@@ -23,7 +23,7 @@ necessary to avoid leaks.
 void   *_mulle_pointermultififo_read_barrier( struct mulle_pointermultififo *p)
 ```
 
-Read from the FIFO. Will return NULL if empty. Will not block. Will put up
+Read from the FIFO. Will return NULL if empty, so will not block. Will put up
 a memory barrier to ensure that the memory pointed to by the returned pointer
 is valid.
 
@@ -33,7 +33,7 @@ int   _mulle_pointermultififo_write( struct mulle_pointermultififo *p,
                                      void *pointer)
 ```
 
-Write to the FIFO. Will return -1 if full, 0 on success. Will not block.
+Write to the FIFO. Will return -1 if full, 0 on success, so will not block.
 
 
 

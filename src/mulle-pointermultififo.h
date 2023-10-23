@@ -40,12 +40,13 @@
 
 struct mulle_pointermultififo
 {
-   mulle_atomic_pointer_t   n;        
-   mulle_atomic_pointer_t   write;    // only accessed by producers
-   mulle_atomic_pointer_t   read;     // only accessed by consumers
+   mulle_thread_mutex_t     lock;
+   unsigned int             n;
+   unsigned int             write;    // only accessed by producers
+   unsigned int             read;     // only accessed by consumers
    unsigned int             size;     // read only after init
    struct mulle_allocator   *allocator;
-   mulle_atomic_pointer_t   *storage;
+   void                     **storage;
 };
 
 
@@ -54,16 +55,11 @@ void   _mulle_pointermultififo_init( struct mulle_pointermultififo *p,
                                      struct mulle_allocator *allocator);
 
 
-static inline void   _mulle_pointermultififo_done( struct mulle_pointermultififo *p)
-{
-   mulle_allocator_free( p->allocator, p->storage);
-}
+void   _mulle_pointermultififo_done( struct mulle_pointermultififo *p);
 
 
-static inline unsigned int   _mulle_pointermultififo_get_count( struct mulle_pointermultififo *p)
-{
-   return( (unsigned int) (uintptr_t) _mulle_atomic_pointer_read( &p->n));
-}
+MULLE_C_NONNULL_FIRST
+unsigned int   _mulle_pointermultififo_get_count( struct mulle_pointermultififo *p);
 
 
 MULLE_C_NONNULL_FIRST
@@ -74,7 +70,7 @@ void   *_mulle_pointermultififo_read_barrier( struct mulle_pointermultififo *p);
 // fifo is full. This can be remedied by making the fifo larger, but ususally
 // indicates, that consumers are taking too long...
 //
-MULLE_C_NONNULL_FIRST
+MULLE_C_NONNULL_FIRST_SECOND
 int   _mulle_pointermultififo_write( struct mulle_pointermultififo *p, void *pointer);
 
 

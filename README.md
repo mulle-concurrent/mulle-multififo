@@ -38,7 +38,7 @@ necessary to avoid leaks.
 void   *_mulle_pointermultififo_read_barrier( struct mulle_pointermultififo *p)
 ```
 
-Read from the FIFO. Will return NULL if empty. Will not block. Will put up
+Read from the FIFO. Will return NULL if empty, so will not block. Will put up
 a memory barrier to ensure that the memory pointed to by the returned pointer
 is valid.
 
@@ -48,7 +48,7 @@ int   _mulle_pointermultififo_write( struct mulle_pointermultififo *p,
                                      void *pointer)
 ```
 
-Write to the FIFO. Will return -1 if full, 0 on success. Will not block.
+Write to the FIFO. Will return -1 if full, 0 on success, so will not block.
 
 
 
@@ -58,11 +58,10 @@ Write to the FIFO. Will return -1 if full, 0 on success. Will not block.
 
 ## Usage
 
-You can not store 0 pointers or `~0` pointers into the FIFO.
+You can not store NULL pointers or `~0` pointers into the FIFO.
 
-The operations are non-blocking and lock-free. If the FIFO is full your write
-will return with an error. If the FIFO is empty on ready you will get a NULL
-pointer.
+If the FIFO is full your write will return with an error. If the FIFO is empty
+on read you will get a NULL pointer.
 
 
 
