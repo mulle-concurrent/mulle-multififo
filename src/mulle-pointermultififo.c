@@ -48,132 +48,83 @@ void   _mulle_pointermultififo_init( struct mulle_pointermultififo *p,
 
    memset( p, 0, sizeof( *p));
 
+   mulle_thread_mutex_init( &p->lock);
    p->size      = size;
    p->allocator = allocator;
-   p->storage   = mulle_allocator_calloc( allocator, 1, size * sizeof( mulle_atomic_pointer_t));
+   p->storage   = mulle_allocator_calloc( allocator, size, sizeof( void *));
+}
+
+
+void   _mulle_pointermultififo_done( struct mulle_pointermultififo *p)
+{
+   mulle_thread_mutex_done( &p->lock);
+   mulle_allocator_free( p->allocator, p->storage);
+}
+
+
+unsigned int   _mulle_pointermultififo_get_count( struct mulle_pointermultififo *p)
+{
+   unsigned int   n;
+
+   mulle_thread_mutex_do( p->lock)
+   {
+      n = p->n;
+   }
+   return( n);
 }
 
 
 void   *_mulle_pointermultififo_read_barrier( struct mulle_pointermultififo *p)
 {
    void           *pointer;
-   void           *actual;
-   void           *a_i;
-   void           *a_n;
    unsigned int   i;
-   unsigned int   loops;
 
-   for(;;)
+   pointer = NULL;
+   mulle_thread_mutex_do( p->lock)
    {
-      for( loops = 32;--loops;)
-      {
-         a_n = _mulle_atomic_pointer_read( &p->n);
-         if( a_n == NULL)
-            return( NULL);
+      if( ! p->n)
+         break;
 
-         a_i = _mulle_atomic_pointer_read( &p->read);
-         i   = ((unsigned int) (uintptr_t) a_i) % p->size;
+      i       = p->read % p->size;
+      pointer = p->storage[ i];
+      assert( pointer);
+      --p->n;
+      ++p->read;
 
-         // we read the pointer to be able to do a CAS later, if it's NULL
-         // then another thread already did the CAS, so it's taken.
-         // Just reloop.
-         pointer = _mulle_atomic_pointer_read( &p->storage[ i]);
-         if( pointer == NULL || pointer == NOTYET)  // contention with other thread, who's just below
-            continue;
-
-         // If actual is not pointer, it must be NULL (otherwise the
-         // algorithm is broken and a writer overwrote stugg). If it is NULL,
-         // then another thread was faster. Just reloop.
-         actual = __mulle_atomic_pointer_cas( &p->storage[ i], NOTYET, pointer);
-         if( actual == NULL || actual == NOTYET)
-            continue;
-
-         assert( actual == pointer);
-
-         //
-         // As soon as we increment p->read it's possible for another thread
-         // to read another entry. Before that, we know its indexing NULL
-         // and that's a no-go. So decrement p->n first. As soon as we
-         // decrement p->n another writer may now appear and overwrite our
-         // old NULL value though, that's not good either. The solution to
-         // this is, that we write NOTYET into the storage and only change
-         // it to NULL once we are done with decrement increment
-         //
-         _mulle_atomic_pointer_decrement( &p->n);
-         _mulle_atomic_pointer_increment( &p->read);
-
-         // this can't fail... brave words...
-         for(;;)
-         {
-            actual = __mulle_atomic_pointer_cas( &p->storage[ i], NULL, NOTYET);
-            if( actual == NOTYET)
-               break;
-         }
-
-         // For API user, ensure that the contents of memory pointed to by
-         // pointer is consistent
-         mulle_atomic_memory_barrier();
-         return( pointer);
-      }
-
-      // if we loop successlessly for some time, just yield and then try anew
-      mulle_thread_yield();   // wait for other thread to finish up
+      // mulle_atomic_memory_barrier();   implicit in lock
    }
+   return( pointer);
 }
 
 
 int   _mulle_pointermultififo_write( struct mulle_pointermultififo *p,
                                      void *pointer)
 {
-   void           *actual;
-   void           *a_i;
-   void           *a_n;
    unsigned int   i;
-   unsigned int   loops;
+   int            rval;
 
-   if( pointer == NULL)
-      return( 0);
-   if( pointer == NOTYET)
+   if( ! pointer || pointer == (void *) ~0)  // future
    {
       errno = EINVAL;
       return( -1);
    }
 
-   for(;;)
+   rval = 0;
+   mulle_thread_mutex_do( p->lock)
    {
-      for( loops = 32;--loops;)
+      if( p->n == p->size)
       {
-         a_n = _mulle_atomic_pointer_read( &p->n);
-         if( a_n == (void *) (uintptr_t) p->size)
-         {
-            errno = EAGAIN; // EWOULDBLOCK
-            return( -1);
-         }
-
-         a_i = _mulle_atomic_pointer_read( &p->write);
-         i   = ((unsigned int) (uintptr_t) a_i) % p->size;
-
-         // If actual was not NULL, then just reloop.
-         actual = __mulle_atomic_pointer_cas( &p->storage[ i], NOTYET, NULL);
-         if( actual != NULL)
-            continue;
-
-         _mulle_atomic_pointer_increment( &p->n);
-         _mulle_atomic_pointer_increment( &p->write);
-
-         // this can't fail... brave words...
-         for(;;)
-         {
-            actual = __mulle_atomic_pointer_cas( &p->storage[ i], pointer, NOTYET);
-            if( actual == NOTYET)
-               break;
-         }
-
-         return( 0);
+         errno = EBUSY;
+         rval  = -1;
+         break;
       }
 
-      // if we loop successlessly for some time, just yield and then try anew
-      mulle_thread_yield();   // wait for other thread to finish up
+      i              = p->write % p->size;
+      p->storage[ i] = pointer;
+
+      ++p->n;
+      ++p->write;
    }
+   return( rval);
 }
 
