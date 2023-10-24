@@ -18,7 +18,7 @@ int  main( int argc, char *argv[])
    for( i = 0; i < N_ITEMS + 1; i++)
    {
       rval = _mulle_pointermultififo_write( &fifo, (void *) (intptr_t) i + 1);
-      printf( "%u: %d\n", _mulle_pointermultififo_get_count( &fifo), rval);
+      printf( "%u: %d\n", i + 1, rval);
    }
 
    printf( "READ:\n");

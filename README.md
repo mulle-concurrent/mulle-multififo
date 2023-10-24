@@ -7,6 +7,8 @@ consumers operating on the FIFO. The size of the FIFO is set at runtime.
 Use [mulle-fifo](//github.com/mulle-concurrent/mulle-fifo) if your require only
 a dual-thread solution.
 
+There is a locking and a non-locking variant.
+
 
 | Release Version                                       | Release Notes
 |-------------------------------------------------------|--------------
