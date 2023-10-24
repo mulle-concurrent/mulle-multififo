@@ -4,15 +4,28 @@
 #include <stdlib.h>
 
 
+#if 1
+# define N_PRODUCERS     3
+# define N_ITEMS         1024
+# define N_QUEUE_ITEMS   100
+#else
+# define N_PRODUCERS     3
+# define N_ITEMS         8
+# define N_QUEUE_ITEMS   3
+#endif
+
+
 static mulle_thread_rval_t   producer( void *arg)
 {
    struct mulle_pointermultififo  *fifo = arg;
    struct timespec                 delay;
    int                             i;
+   int                             warned;
 
-   fprintf( stderr, "producer starts\n");
+   fprintf( stderr, "producer 0x%tx starts\n", (intptr_t) mulle_thread_self());
 
-   i = 1;
+   warned = 0;
+   i      = 1;
    for(;;)
    {
       switch( rand() % 8)
@@ -23,11 +36,21 @@ static mulle_thread_rval_t   producer( void *arg)
       case 3 :
          if( _mulle_pointermultififo_write( fifo, (void *) (intptr_t) i) == -1)
          {
-            fprintf( stderr, "producer full\n");
+            if( ! warned)
+            {
+               fprintf( stderr, "producer 0x%tx full\n", (intptr_t) mulle_thread_self());
+               warned = 1;
+            }
          }
          else
          {
-            if( i == 1024)
+            if( warned)
+            {
+               fprintf( stderr, "producer 0x%tx continues\n", (intptr_t) mulle_thread_self());
+               warned = 0;
+            }
+
+            if( i == N_ITEMS)
                goto done;
             ++i;
          }
@@ -44,26 +67,24 @@ static mulle_thread_rval_t   producer( void *arg)
    }
 
 done:
-   fprintf( stderr, "producer quits\n");
+   fprintf( stderr, "producer 0x%tx quits\n", (intptr_t) mulle_thread_self());
    mulle_thread_return();
 }
 
 
-int  main( int argc, char *argv[])
+static mulle_thread_rval_t   consumer( void *arg)
 {
-   struct mulle_pointermultififo  fifo;
-   void                         *pointer;
-   mulle_thread_t               producer_thread[ 3];
-   struct timespec              delay;
-   int                          i;
+   struct mulle_pointermultififo   *fifo = arg;
+   struct timespec                 delay;
+   void                            *pointer;
+   int                             i;
+   int                             warned;
+   int                             count;
 
-   _mulle_pointermultififo_init( &fifo, 100, NULL);
+   fprintf( stderr, "consumer 0x%tx starts\n", (intptr_t) mulle_thread_self());
 
-   for( i = 0; i < 3; i++)
-      mulle_thread_create( producer, &fifo, &producer_thread[ i]);
-
-   i = 3;
-   fprintf( stderr, "READ:\n");
+   warned = 0;
+   count  = 0;
    for(;;)
    {
       switch( rand() % 8)
@@ -72,16 +93,27 @@ int  main( int argc, char *argv[])
       case 1 :
       case 2 :
       case 3 :
-         pointer = _mulle_pointermultififo_read_barrier( &fifo);
+         pointer = _mulle_pointermultififo_read_barrier( fifo);
          if( ! pointer)
          {
-            fprintf( stderr, "consumer empty\n");
+            if( ! warned)
+            {
+               fprintf( stderr, "consumer 0x%tx empty\n", (intptr_t) mulle_thread_self());
+               warned = 1;
+            }
             continue;
          }
-         printf( "%ld\n", (long) (intptr_t) pointer); fflush( stdout);
-         if( pointer == (void *) 1024)
+
+         if( warned)
          {
-            if( ! --i)
+            fprintf( stderr, "consumer 0x%tx continues\n", (intptr_t) mulle_thread_self());
+            warned = 0;
+         }
+
+         printf( "%ld\n", (long) (intptr_t) pointer); fflush( stdout);
+         if( pointer == (void *) N_ITEMS)
+         {
+            if( ++count == N_PRODUCERS)
                goto done;
          }
          break;
@@ -97,10 +129,28 @@ int  main( int argc, char *argv[])
    }
 
 done:
-   _mulle_pointermultififo_done( &fifo);
+   fprintf( stderr, "consumer 0x%tx quits\n", (intptr_t) mulle_thread_self());
+   mulle_thread_return();
+}
 
-   for( i = 0; i < 3; i++)
+
+int  main( int argc, char *argv[])
+{
+   struct mulle_pointermultififo  fifo;
+   mulle_thread_t                 producer_thread[ N_PRODUCERS];
+   int                            i;
+
+   _mulle_pointermultififo_init( &fifo, N_QUEUE_ITEMS, NULL);
+
+   for( i = 0; i < N_PRODUCERS; i++)
+      mulle_thread_create( producer, &fifo, &producer_thread[ i]);
+
+   consumer( &fifo);
+
+   for( i = 0; i < N_PRODUCERS; i++)
       mulle_thread_join( producer_thread[ i]);
+
+   _mulle_pointermultififo_done( &fifo);
 
    return( 0);
 }
