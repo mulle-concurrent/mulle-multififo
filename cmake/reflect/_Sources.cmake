@@ -11,5 +11,6 @@ endif()
 # contents selected with patternfile ??-source--sources
 #
 set( SOURCES
+src/mulle-lockingpointermultififo.c
 src/mulle-pointermultififo.c
 )

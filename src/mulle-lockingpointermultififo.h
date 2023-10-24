@@ -32,44 +32,46 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 //
-#ifndef mulle_pointermultififo_h_
-#define mulle_pointermultififo_h_
+#ifndef mulle_lockingpointermultififo_h_
+#define mulle_lockingpointermultififo_h_
 
 #include "include.h"
 
 
-struct mulle_pointermultififo
+struct mulle_lockingpointermultififo
 {
-   mulle_atomic_pointer_t   read;     // only accessed by consumers
-   mulle_atomic_pointer_t   write;    // only accessed by producers
+   mulle_thread_mutex_t     lock;
+   unsigned int             n;
+   unsigned int             write;    // only accessed by producers
+   unsigned int             read;     // only accessed by consumers
    unsigned int             size;     // read only after init
    struct mulle_allocator   *allocator;
-   mulle_atomic_pointer_t   *storage;
+   void                     **storage;
 };
 
 
-void   _mulle_pointermultififo_init( struct mulle_pointermultififo *p,
-                                     unsigned int size,
-                                     struct mulle_allocator *allocator);
+void   _mulle_lockingpointermultififo_init( struct mulle_lockingpointermultififo *p,
+                                            unsigned int size,
+                                            struct mulle_allocator *allocator);
 
 
-static inline void   _mulle_pointermultififo_done( struct mulle_pointermultififo *p)
-{
-   mulle_allocator_free( p->allocator, p->storage);
-}
-
+void   _mulle_lockingpointermultififo_done( struct mulle_lockingpointermultififo *p);
 
 
 MULLE_C_NONNULL_FIRST
-void   *_mulle_pointermultififo_read_barrier( struct mulle_pointermultififo *p);
+unsigned int   _mulle_lockingpointermultififo_get_count( struct mulle_lockingpointermultififo *p);
+
+
+MULLE_C_NONNULL_FIRST
+void   *_mulle_lockingpointermultififo_read_barrier( struct mulle_lockingpointermultififo *p);
 
 //
 // will return -1 on failure, which is usually EAGAIN (errno), which means the
 // fifo is full. This can be remedied by making the fifo larger, but ususally
 // indicates, that consumers are taking too long...
 //
-MULLE_C_NONNULL_FIRST
-int   _mulle_pointermultififo_write( struct mulle_pointermultififo *p, void *pointer);
+MULLE_C_NONNULL_FIRST_SECOND
+int   _mulle_lockingpointermultififo_write( struct mulle_lockingpointermultififo *p, void *pointer);
 
 
 
