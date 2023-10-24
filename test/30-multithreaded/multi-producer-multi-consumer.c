@@ -8,12 +8,12 @@
 # define N_PRODUCERS     3
 # define N_CONSUMERS     3
 # define N_ITEMS         1024
-# define N_QUEUE_ITEMS   100
+# define N_QUEUE_ITEMS   32
 #else
-# define N_PRODUCERS     3
-# define N_CONSUMERS     3
-# define N_ITEMS         64
-# define N_QUEUE_ITEMS   4
+# define N_PRODUCERS     2
+# define N_CONSUMERS     2
+# define N_ITEMS         1024
+# define N_QUEUE_ITEMS   2
 #endif
 
 
