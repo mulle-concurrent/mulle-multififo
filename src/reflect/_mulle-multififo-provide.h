@@ -13,6 +13,7 @@
 #define mulle_multififo_provide_h__
 
 
+#include "mulle-lockingpointermultififo.h"
 #include "mulle-pointermultififo.h"
 
 

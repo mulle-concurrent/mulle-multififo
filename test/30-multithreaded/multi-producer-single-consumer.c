@@ -7,7 +7,7 @@
 #if 1
 # define N_PRODUCERS     3
 # define N_ITEMS         1024
-# define N_QUEUE_ITEMS   100
+# define N_QUEUE_ITEMS   32
 #else
 # define N_PRODUCERS     3
 # define N_ITEMS         8

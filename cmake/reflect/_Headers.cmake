@@ -51,6 +51,7 @@ src/generic/include.h
 # contents selected with patternfile ??-header--public-headers
 #
 set( PUBLIC_HEADERS
+src/mulle-lockingpointermultififo.h
 src/mulle-multififo.h
 src/mulle-pointermultififo.h
 )
