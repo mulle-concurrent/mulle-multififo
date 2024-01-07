@@ -112,6 +112,7 @@ void   *_mulle_pointermultififo_read_barrier( struct mulle_pointermultififo *p)
 
          // only check this here
          assert( previous == pointer);
+         MULLE_C_UNUSED( previous);
 
          MULLE_THREAD_UNPLEASANT_RACE_YIELD();
 
