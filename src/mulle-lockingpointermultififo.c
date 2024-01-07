@@ -103,7 +103,9 @@ int   _mulle_lockingpointermultififo_write( struct mulle_lockingpointermultififo
    unsigned int   i;
    int            rval;
 
-   if( ! pointer || pointer == (void *) ~0)  // future
+   assert( pointer != NULL);
+
+   if( pointer == (void *) ~0)  // future
    {
       errno = EINVAL;
       return( -1);
