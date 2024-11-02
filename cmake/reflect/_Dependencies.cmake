@@ -83,7 +83,7 @@ if( NOT MULLE__THREAD_LIBRARY)
       endforeach()
    else()
       # Disable with: `mulle-sourcetree mark mulle-thread no-require-link`
-      message( FATAL_ERROR "MULLE__THREAD_LIBRARY was not found")
+      message( SEND_ERROR "MULLE__THREAD_LIBRARY was not found")
    endif()
 endif()
 
@@ -122,6 +122,6 @@ if( NOT MULLE__ALLOCATOR_LIBRARY)
       # intentionally left blank
    else()
       # Disable with: `mulle-sourcetree mark mulle-allocator no-require-link`
-      message( FATAL_ERROR "MULLE__ALLOCATOR_LIBRARY was not found")
+      message( SEND_ERROR "MULLE__ALLOCATOR_LIBRARY was not found")
    endif()
 endif()
