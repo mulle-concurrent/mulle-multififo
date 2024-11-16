@@ -105,8 +105,6 @@ Add `-isystem src/mulle-concurrent` to your `CFLAGS` and compile all the sources
 
 ## Install
 
-### Install with mulle-sde
-
 Use [mulle-sde](//github.com/mulle-sde) to build and install mulle-multififo and all dependencies:
 
 ``` sh
@@ -114,7 +112,7 @@ mulle-sde install --prefix /usr/local \
    https://github.com/mulle-concurrent/mulle-multififo/archive/latest.tar.gz
 ```
 
-### Manual Installation
+### Legacy Installation
 
 Install the requirements:
 
