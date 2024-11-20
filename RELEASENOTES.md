@@ -1,3 +1,9 @@
+# 1.0.0
+
+
+** BREAKING** on full `_mulle_pointermultififo_write` now returns EBUSY instead of ENOSPC which is more correct and samish with mulle-concurrent
+
+
 ### 0.1.1
 
 * Various small improvements
