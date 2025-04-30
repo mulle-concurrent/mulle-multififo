@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.14)
+cmake_minimum_required( VERSION 3.13...99.99)
 
 project( mulle-multififo VERSION 1.0.1 LANGUAGES C)
 

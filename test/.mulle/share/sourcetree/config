@@ -1,1 +1,1 @@
-mulle-multififo;${MULLE__MULTIFIFO_NODETYPE:-tar};;B6BA42F5-86BA-436F-A88E-B9F88E4A89B8;${MULLE__MULTIFIFO_URL:-https://github.com/nat/mulle-multififo/archive/${MULLE_TAG}.tar.gz};${MULLE__MULTIFIFO_BRANCH};${MULLE__MULTIFIFO_TAG:-latest};;
+mulle-multififo;${MULLE__MULTIFIFO_NODETYPE:-tar};;45B49390-8F15-4747-A6E2-CF317DA0B5D0;${MULLE__MULTIFIFO_URL:-https://github.com/mulle-nat/mulle-multififo/archive/${MULLE_TAG}.tar.gz};${MULLE__MULTIFIFO_BRANCH};${MULLE__MULTIFIFO_TAG:-latest};;
