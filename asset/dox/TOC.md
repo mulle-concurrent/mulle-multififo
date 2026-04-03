@@ -1,4 +1,5 @@
 # mulle-multififo Library Documentation for AI
+<!-- Keywords: lock-free, multi-queue -->
 
 ## 1. Introduction & Purpose
 

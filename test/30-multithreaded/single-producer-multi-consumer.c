@@ -22,7 +22,7 @@ static mulle_thread_rval_t   producer( void *arg)
    int                             i;
    int                             warned;
 
-   fprintf( stderr, "producer 0x%tx starts\n", (intptr_t) mulle_thread_self());
+   fprintf( stderr, "producer 0x%tx starts\n", (intptr_t) mulle_thread_id());
 
    warned = 0;
    i      = 1;
@@ -38,7 +38,7 @@ static mulle_thread_rval_t   producer( void *arg)
          {
             if( ! warned)
             {
-               fprintf( stderr, "producer 0x%tx full\n", (intptr_t) mulle_thread_self());
+               fprintf( stderr, "producer 0x%tx full\n", (intptr_t) mulle_thread_id());
                warned = 1;
             }
          }
@@ -46,7 +46,7 @@ static mulle_thread_rval_t   producer( void *arg)
          {
             if( warned)
             {
-               fprintf( stderr, "producer 0x%tx continues\n", (intptr_t) mulle_thread_self());
+               fprintf( stderr, "producer 0x%tx continues\n", (intptr_t) mulle_thread_id());
                warned = 0;
             }
 
@@ -67,7 +67,7 @@ static mulle_thread_rval_t   producer( void *arg)
    }
 
 done:
-   fprintf( stderr, "producer 0x%tx quits (i=%d)\n", (intptr_t) mulle_thread_self(), i);
+   fprintf( stderr, "producer 0x%tx quits (i=%d)\n", (intptr_t) mulle_thread_id(), i);
    mulle_thread_return();
 }
 
@@ -81,7 +81,7 @@ static mulle_thread_rval_t   consumer( void *arg)
    int                             warned;
    unsigned int                    count;
 
-   fprintf( stderr, "consumer 0x%tx starts\n", (intptr_t) mulle_thread_self());
+   fprintf( stderr, "consumer 0x%tx starts\n", (intptr_t) mulle_thread_id());
 
    count  = 0;
    warned = 0;
@@ -98,7 +98,7 @@ static mulle_thread_rval_t   consumer( void *arg)
          {
             if( ! warned)
             {
-               fprintf( stderr, "consumer 0x%tx empty\n", (intptr_t) mulle_thread_self());
+               fprintf( stderr, "consumer 0x%tx empty\n", (intptr_t) mulle_thread_id());
                warned = 1;
             }
             continue;
@@ -106,7 +106,7 @@ static mulle_thread_rval_t   consumer( void *arg)
 
          if( warned)
          {
-            fprintf( stderr, "consumer 0x%tx continues\n", (intptr_t) mulle_thread_self());
+            fprintf( stderr, "consumer 0x%tx continues\n", (intptr_t) mulle_thread_id());
             warned = 0;
          }
 
@@ -126,7 +126,7 @@ static mulle_thread_rval_t   consumer( void *arg)
    }
 
 done:
-   fprintf( stderr, "consumer 0x%tx quits\n", (intptr_t) mulle_thread_self());
+   fprintf( stderr, "consumer 0x%tx quits\n", (intptr_t) mulle_thread_id());
    mulle_thread_return();
 }
 
