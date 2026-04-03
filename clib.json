@@ -1,11 +1,12 @@
 {
    "name" : "mulle-multififo",
-   "version" : "1.0.2",
+   "version" : "20",
    "description" : "🐛 mulle-multififo multi-producer/multi-consumer FIFO holding `void *`",
    "keywords" : [],
    "license" : "BSD-3-Clause",
    "repo" : "mulle-concurrent/mulle-multififo",
    "src" : [
+      "asset/dox/TOC.md",
       "src/generic/include-private.h",
       "src/generic/include.h",
       "src/mulle-lockingpointermultififo.c",
