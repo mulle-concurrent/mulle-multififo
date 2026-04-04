@@ -6,6 +6,7 @@
       name="mulle-multififo";
       user="mulle-concurrent";
       repo="mulle-multififo";
+      version="1.0.3";
       homepage="https://github.com/mulle-concurrent/mulle-multififo";
       license="BSD-3-Clause";
    };
