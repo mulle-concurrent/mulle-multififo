@@ -60,6 +60,11 @@ Write to the FIFO. Will return -1 if full, 0 on success, so will not block.
 
 
 
+
+## Documentation & Guides
+
+* [API Summary](asset/dox/api/toc)
+
 ## Usage
 
 You can not store NULL pointers or `~0` pointers into the FIFO.
