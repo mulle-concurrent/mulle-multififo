@@ -1,1 +1,1 @@
-mulle-multififo;${MULLE__MULTIFIFO_NODETYPE:-tar};;A98B7931-7A44-4BD0-9818-8EA23EC466BA;${MULLE__MULTIFIFO_URL:-https://github.com/mulle-kybernetik-tv/mulle-multififo/archive/${MULLE_TAG}.tar.gz};${MULLE__MULTIFIFO_BRANCH};${MULLE__MULTIFIFO_TAG:-latest};;
+mulle-multififo;${MULLE__MULTIFIFO_NODETYPE:-tar};;83713A54-9C16-4C8B-80E3-7EC1BB0630A7;${MULLE__MULTIFIFO_URL:-https://github.com/nat/mulle-multififo/archive/${MULLE_TAG}.tar.gz};${MULLE__MULTIFIFO_BRANCH};${MULLE__MULTIFIFO_TAG:-latest};;
