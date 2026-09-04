@@ -66,3 +66,6 @@ environment-user-*.sh
 *.tmp.*
 *.test.*
 .idea
+.kiro/
+TODO.md
+REVIEW.md
