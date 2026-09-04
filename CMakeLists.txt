@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.13...99.99)
 
-project( mulle-multififo VERSION 1.0.4 LANGUAGES C)
+project( mulle-multififo VERSION 1.0.5 LANGUAGES C)
 
 
 #
