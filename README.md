@@ -84,29 +84,40 @@ on read you will get a NULL pointer.
 
 ## Add
 
-**This project is a component of the [mulle-core](//github.com/mulle-core/mulle-core) library. As such you usually will *not* add or install it
-individually, unless you specifically do not want to link against
-`mulle-core`.**
+mulle-multififo is a component of the [mulle-core](//github.com/mulle-core/mulle-core) library. So in your code include the mulle-core umbrella header:
 
-
-### Add as an individual component
-
-Use [mulle-sde](//github.com/mulle-sde) to add mulle-multififo to your project:
-
-``` sh
-mulle-sde add github:mulle-concurrent/mulle-multififo
+``` c
+#include <mulle-core/mulle-core.h>
 ```
 
-To only add the sources of mulle-multififo with dependency
-sources use [clib](https://github.com/clibs/clib):
+### Add mulle-core to a cmake and git project
 
-
-``` sh
-clib install --out src/mulle-concurrent mulle-concurrent/mulle-multififo
+``` bash
+git submodule add https://github.com/mulle-core/mulle-core.git mulle-core
 ```
 
-Add `-isystem src/mulle-concurrent` to your `CFLAGS` and compile all the sources that were downloaded with your project.
+Add this to your `CMakeLists.txt`:
 
+``` cmake
+add_subdirectory( mulle-core)
+target_link_libraries( ${PROJECT_NAME} PRIVATE mulle-core)
+```
+
+
+### Add mulle-core to a mulle-sde project
+
+``` sh
+mulle-sde add github:mulle-core/mulle-core
+```
+
+### Embed mulle-multififo with clib
+
+``` sh
+clib install --out src mulle-concurrent/mulle-multififo
+```
+
+Append `src` to your include path (e.g. add `-isystem src`  to your `CFLAGS`)
+and compile all the sources that were downloaded.
 
 ## Install
 
