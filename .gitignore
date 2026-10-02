@@ -69,3 +69,9 @@ environment-user-*.sh
 .kiro/
 TODO.md
 REVIEW.md
+.vscode/
+.touch
+*.orig
+*.workspace
+*.*-workspace
+research/
