@@ -77,7 +77,6 @@ static mulle_thread_rval_t   consumer( void *arg)
    struct mulle_pointermultififo   *fifo = arg;
    struct timespec                 delay;
    void                            *pointer;
-   int                             i;
    int                             warned;
    int                             count;
 

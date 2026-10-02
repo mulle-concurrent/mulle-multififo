@@ -79,7 +79,6 @@ static mulle_thread_rval_t   consumer( void *arg)
    struct mulle_pointermultififo   *fifo = arg;
    struct timespec                 delay;
    void                            *pointer;
-   int                             i;
    int                             warned;
 
    fprintf( stderr, "consumer 0x%tx starts\n", (intptr_t) mulle_thread_id());
