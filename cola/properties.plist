@@ -3,10 +3,11 @@
    {
       description="🐛 mulle-multififo multi-producer/multi-consumer FIFO holding `void *`";
       domain="github";
+      language="c";
+      dialect="c";
       name="mulle-multififo";
       user="mulle-concurrent";
       repo="mulle-multififo";
-      version="1.0.6";
       homepage="https://github.com/mulle-concurrent/mulle-multififo";
       license="BSD-3-Clause";
    };

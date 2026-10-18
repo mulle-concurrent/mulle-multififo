@@ -14,7 +14,7 @@ There is a locking and a non-locking variant.
 
 | Release Version                                       | Release Notes  | AI Documentation
 |-------------------------------------------------------|----------------|---------------
-| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-concurrent/mulle-multififo.svg) [![Build Status](https://github.com/mulle-concurrent/mulle-multififo/workflows/CI/badge.svg)](//github.com/mulle-concurrent/mulle-multififo/actions) | [RELEASENOTES](RELEASENOTES.md) | [DeepWiki for mulle-multififo](https://deepwiki.com/mulle-concurrent/mulle-multififo)
+| ![Mulle kybernetiK tag](https://img.shields.io/github/tag/mulle-concurrent/mulle-multififo.svg) ![standard: C11](pix/c11.svg) ![apis: ansi](pix/apis-ansi.svg) ![memory: allocator](pix/memory-allocator.svg) ![threads: mpmc](pix/thread-mpmc.svg) [![Build Status](https://github.com/mulle-concurrent/mulle-multififo/workflows/CI/badge.svg)](//github.com/mulle-concurrent/mulle-multififo/actions) | [RELEASENOTES](RELEASENOTES.md) | [DeepWiki for mulle-multififo](https://deepwiki.com/mulle-concurrent/mulle-multififo)
 
 
 ## API
@@ -90,16 +90,21 @@ mulle-multififo is a component of the [mulle-core](//github.com/mulle-core/mulle
 #include <mulle-core/mulle-core.h>
 ```
 
-### Add mulle-core to a cmake and git project
+### Add mulle-core to a cmake project
 
-``` bash
-git submodule add https://github.com/mulle-core/mulle-core.git mulle-core
-```
-
-Add this to your `CMakeLists.txt`:
+Add mulle-core to your `CMakeLists.txt` with
+[FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html):
 
 ``` cmake
-add_subdirectory( mulle-core)
+include( FetchContent)
+
+set( MULLE__CORE_TAG "master" CACHE STRING "branch or tag to fetch mulle-core from")
+
+FetchContent_Declare( MULLE__CORE
+   GIT_REPOSITORY https://github.com/mulle-core/mulle-core.git
+   GIT_TAG        "${MULLE__CORE_TAG}")
+FetchContent_MakeAvailable( MULLE__CORE)
+
 target_link_libraries( ${PROJECT_NAME} PRIVATE mulle-core)
 ```
 
@@ -128,7 +133,7 @@ mulle-sde install --prefix /usr/local \
    https://github.com/mulle-concurrent/mulle-multififo/archive/latest.tar.gz
 ```
 
-### Legacy Installation
+### Manual Installation
 
 Install the requirements:
 
