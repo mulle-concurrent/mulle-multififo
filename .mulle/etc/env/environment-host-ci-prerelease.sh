@@ -1,19 +1,19 @@
 #
-# mulle-thread nodetype: ${MULLE__THREAD_NODETYPE:-tar}
+# mulle-allocator nodetype: ${MULLE__ALLOCATOR_NODETYPE:-tar}
 #
-export MULLE__THREAD_NODETYPE="git"
+export MULLE__ALLOCATOR_NODETYPE="git"
 
 
 #
-# mulle-thread url: ${MULLE__THREAD_URL:-https://github.com/mulle-concurrent/mulle-thread/archive/${MULLE_TAG}.tar.gz}
+# mulle-allocator url: ${MULLE__ALLOCATOR_URL:-https://github.com/mulle-c/mulle-allocator/archive/${MULLE_TAG}.tar.gz}
 #
-export MULLE__THREAD_URL="https://github.com/mulle-concurrent/mulle-thread.git"
+export MULLE__ALLOCATOR_URL="https://github.com/mulle-c/mulle-allocator.git"
 
 
 #
-# mulle-thread branch: ${MULLE__THREAD_BRANCH}
+# mulle-allocator branch: ${MULLE__ALLOCATOR_BRANCH}
 #
-export MULLE__THREAD_BRANCH="prerelease"
+export MULLE__ALLOCATOR_BRANCH="prerelease"
 
 
 #
@@ -35,20 +35,20 @@ export MULLE__C11_BRANCH="prerelease"
 
 
 #
-# mulle-allocator nodetype: ${MULLE__ALLOCATOR_NODETYPE:-tar}
+# mulle-thread nodetype: ${MULLE__THREAD_NODETYPE:-tar}
 #
-export MULLE__ALLOCATOR_NODETYPE="git"
+export MULLE__THREAD_NODETYPE="git"
 
 
 #
-# mulle-allocator url: ${MULLE__ALLOCATOR_URL:-https://github.com/mulle-c/mulle-allocator/archive/${MULLE_TAG}.tar.gz}
+# mulle-thread url: ${MULLE__THREAD_URL:-https://github.com/mulle-concurrent/mulle-thread/archive/${MULLE_TAG}.tar.gz}
 #
-export MULLE__ALLOCATOR_URL="https://github.com/mulle-c/mulle-allocator.git"
+export MULLE__THREAD_URL="https://github.com/mulle-concurrent/mulle-thread.git"
 
 
 #
-# mulle-allocator branch: ${MULLE__ALLOCATOR_BRANCH}
+# mulle-thread branch: ${MULLE__THREAD_BRANCH}
 #
-export MULLE__ALLOCATOR_BRANCH="prerelease"
+export MULLE__THREAD_BRANCH="prerelease"
 
 
